@@ -1,0 +1,40 @@
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.status-pill__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.status-pill--green {
+  color: #047857;
+  background: #ecfdf5;
+}
+
+.status-pill--amber {
+  color: #b45309;
+  background: #fffbeb;
+}
+
+.status-pill--red {
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+.status-pill--neutral {
+  color: #475569;
+  background: #f1f5f9;
+}

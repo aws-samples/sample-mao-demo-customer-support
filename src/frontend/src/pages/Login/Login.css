@@ -1,0 +1,204 @@
+/*
+ * Modern, colorful login styling.
+ *
+ * Amplify UI is themed through CSS custom properties. Declaring the
+ * `--amplify-*` variables on the `.login-page` wrapper overrides the library
+ * defaults for every descendant (custom properties resolve to the nearest
+ * ancestor), so this restyles the Authenticator without forking its markup.
+ */
+
+.login-page {
+    /* Full-screen animated gradient backdrop */
+    position: fixed;
+    inset: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(1200px 600px at 15% -10%, rgba(139, 92, 246, 0.35), transparent 60%),
+        radial-gradient(1000px 700px at 100% 110%, rgba(236, 72, 153, 0.25), transparent 55%),
+        linear-gradient(135deg, #171a2f 0%, #0e1020 55%, #1d1638 100%);
+
+    /* --- Amplify theme overrides (scoped to the login) --- */
+    /* Card / modal */
+    --amplify-components-authenticator-modal-background-color: transparent;
+    --amplify-components-authenticator-router-background-color: rgba(23, 26, 43, 0.92);
+    --amplify-components-authenticator-router-border-color: rgba(255, 255, 255, 0.08);
+    --amplify-components-authenticator-router-border-width: 1px;
+
+    /* Typography */
+    --amplify-components-heading-color: #f5f6ff;
+    --amplify-components-text-color: #aeb4d6;
+    --amplify-components-field-label-color: #cdd2ee;
+    --amplify-colors-font-primary: #f5f6ff;
+    --amplify-colors-font-secondary: #aeb4d6;
+
+    /* Inputs */
+    --amplify-components-fieldcontrol-color: #f5f6ff;
+    --amplify-components-fieldcontrol-background-color: rgba(255, 255, 255, 0.06);
+    --amplify-components-fieldcontrol-border-color: rgba(255, 255, 255, 0.16);
+    --amplify-components-fieldcontrol-focus-border-color: #8b5cf6;
+    --amplify-components-fieldcontrol-border-radius: 10px;
+
+    /* Primary button */
+    --amplify-components-button-primary-background-color: #7c5cfc;
+    --amplify-components-button-primary-hover-background-color: #8b5cf6;
+    --amplify-components-button-primary-focus-background-color: #8b5cf6;
+    --amplify-components-button-primary-active-background-color: #6d4ff0;
+    --amplify-components-button-primary-color: #ffffff;
+    --amplify-components-button-border-radius: 10px;
+
+    /* Secondary / default button */
+    --amplify-components-button-background-color: rgba(255, 255, 255, 0.04);
+    --amplify-components-button-color: #e7e9f7;
+    --amplify-components-button-border-color: rgba(255, 255, 255, 0.14);
+    --amplify-components-button-hover-background-color: rgba(255, 255, 255, 0.09);
+    --amplify-components-button-hover-border-color: rgba(139, 92, 246, 0.6);
+    --amplify-components-button-hover-color: #ffffff;
+
+    /* Divider + tabs */
+    --amplify-components-divider-label-color: #7b83aa;
+    --amplify-components-divider-label-background-color: #191c2f;
+    --amplify-components-divider-border-color: rgba(255, 255, 255, 0.12);
+    --amplify-components-tabs-item-color: #aeb4d6;
+    --amplify-components-tabs-item-active-color: #b79cff;
+    --amplify-components-tabs-item-active-border-color: #8b5cf6;
+}
+
+/* The modal variation is a fixed full-screen layer; keep it transparent so the
+   .login-page gradient shows through, and center the card. */
+.login-page [data-amplify-authenticator][data-variation="modal"] {
+    background: transparent;
+}
+
+/* The card: rounded, elevated, with a colorful accent bar across the top. */
+.login-page [data-amplify-authenticator] [data-amplify-router] {
+    border-radius: 16px;
+    box-shadow:
+        0 24px 60px -12px rgba(8, 10, 24, 0.75),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(6px);
+}
+
+.login-page [data-amplify-authenticator] [data-amplify-router]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 45%, #ec4899 100%);
+}
+
+/* Give the primary button a gradient + subtle glow. */
+.login-page .amplify-button--primary {
+    background-image: linear-gradient(90deg, #6d5efc 0%, #8b5cf6 55%, #a855f7 100%);
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 8px 20px -8px rgba(124, 92, 252, 0.8);
+    transition: filter 0.15s ease, transform 0.05s ease;
+}
+.login-page .amplify-button--primary:hover {
+    filter: brightness(1.08);
+}
+.login-page .amplify-button--primary:active {
+    transform: translateY(1px);
+}
+
+/* Inputs: smooth focus ring in the accent color. */
+.login-page .amplify-input {
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.login-page .amplify-input:focus {
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.28);
+}
+
+/*
+ * Typed text must be light against the dark inputs. The
+ * --amplify-components-fieldcontrol-color variable alone is not enough: the
+ * browser's own styling for autofilled fields (and some Amplify builds) wins over
+ * it, which left typed characters nearly invisible on the dark background. Set the
+ * colour explicitly, including -webkit-text-fill-color, which is what actually
+ * paints the glyphs in autofilled inputs.
+ */
+.login-page .amplify-input,
+.login-page .amplify-select,
+.login-page .amplify-textarea {
+    color: #f5f6ff;
+    -webkit-text-fill-color: #f5f6ff;
+    caret-color: #8b5cf6;
+}
+.login-page .amplify-input::placeholder {
+    color: #7b83aa;
+    -webkit-text-fill-color: #7b83aa;
+    opacity: 1;
+}
+
+/* Chrome/Safari paint autofilled inputs with an opaque light background and dark
+   text; repaint them to match the dark theme. The long inset shadow is the standard
+   way to override that background, since background-color itself is ignored. */
+.login-page .amplify-input:-webkit-autofill,
+.login-page .amplify-input:-webkit-autofill:hover,
+.login-page .amplify-input:-webkit-autofill:focus,
+.login-page .amplify-input:-webkit-autofill:active {
+    -webkit-text-fill-color: #f5f6ff;
+    caret-color: #f5f6ff;
+    -webkit-box-shadow: 0 0 0 1000px #23263c inset;
+    box-shadow: 0 0 0 1000px #23263c inset;
+    transition: background-color 9999s ease-out 0s;
+}
+
+/* Branded header elements (defined in the SignIn header component). */
+.login-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+.login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    color: #ffffff;
+    font-size: 26px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+    box-shadow: 0 10px 24px -10px rgba(139, 92, 246, 0.9);
+}
+.login-title {
+    color: #f5f6ff !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+}
+.login-subtitle {
+    color: #8b93bd;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+}
+
+/* "or" divider label: blend the pill into the card and give it a small,
+   uppercase, letter-spaced treatment so it reads as a subtle separator. */
+.login-page .amplify-divider[data-label]::after {
+    background-color: #191c2f;
+    color: #7b83aa;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding-inline: 0.85rem;
+}
+
+/* Show/hide-password button in the field group: match the dark inputs instead
+   of the default light control. */
+.login-page .amplify-field-group__outer-end .amplify-button {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #cdd2ee;
+    border-color: rgba(255, 255, 255, 0.16);
+}
+.login-page .amplify-field-group__outer-end .amplify-button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}

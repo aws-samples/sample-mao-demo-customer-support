@@ -1,0 +1,14 @@
+{
+  "name": "mac-demo-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local test/smoke-test scripts for the mac-demo AgentCore stack.",
+  "scripts": {
+    "test:agentcore": "node test-agentcore-invoke.mjs"
+  },
+  "dependencies": {
+    "amazon-cognito-identity-js": "6.3.12",
+    "aws-amplify": "6.18.0"
+  }
+}

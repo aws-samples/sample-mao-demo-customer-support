@@ -1,0 +1,32 @@
+type Chat @model @auth(rules: [{ allow: owner, ownerField: "userId", identityClaim: "sub" }]) {
+    userId: ID
+    sessionId: String! @index(name: "bySessionId")
+    human: String
+    assistant: String
+    trace: AWSJSON          # A single normalized Trace_Event per stream item
+    traceMetadata: AWSJSON  # Accumulated ordered Trace_Event[] for the invocation
+    errorState: String      # Resolver error indication (Req 5.5, 5.6)
+    expiration: AWSTimestamp
+}
+
+type Session @model @auth(rules: [{ allow: owner, ownerField: "userId", identityClaim: "sub" }]) {
+    userId: ID
+    chats: [Chat] @hasMany(indexName: "bySessionId")
+    expiration: AWSTimestamp
+}
+
+type Mutation {
+    sendChat(
+        sessionId: String!
+        human: String!
+        memoryEnabled: Boolean
+        sessionAttributes: AWSJSON
+    ): String @aws_cognito_user_pools
+}
+
+type Query {
+    # Reads the caller's conversation history directly from AgentCore short-term
+    # Memory (keyed by the caller's identity). Returns AWSJSON:
+    # { sessions: [{ sessionId, createdAt, turns: [{ role, text, timestamp }] }] }
+    getMemoryHistory(limit: Int): AWSJSON @aws_cognito_user_pools
+}

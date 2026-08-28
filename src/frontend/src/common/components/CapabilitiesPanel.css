@@ -1,0 +1,330 @@
+/* Modern Capabilities panel — card-based layout. */
+.cap-panel {
+  --cap-border: #e6e9ef;
+  --cap-ink: #0f172a;
+  --cap-muted: #64748b;
+  --cap-indigo: #4f46e5;
+  background: #ffffff;
+  border: 1px solid #e6e9ef;
+  border-radius: 16px;
+  padding: 22px 24px 26px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}
+
+/* ---- Header ---- */
+.cap-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.cap-head__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--cap-ink);
+}
+
+.cap-head__sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--cap-muted);
+}
+
+.cap-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cap-identity--ok {
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+}
+
+.cap-identity--off {
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+.cap-identity__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---- Section label ---- */
+.cap-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cap-muted);
+  margin: 26px 0 12px;
+}
+
+/* ---- Capability card grid ---- */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: 14px;
+}
+
+.cap-card {
+  border: 1px solid var(--cap-border);
+  border-radius: 14px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: box-shadow 0.18s ease, transform 0.06s ease, border-color 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cap-card:hover {
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.09);
+  border-color: #d5dae3;
+  transform: translateY(-1px);
+}
+
+.cap-card__top {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.cap-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  font-size: 18px;
+  flex-shrink: 0;
+  background: #eef2ff;
+  color: var(--cap-indigo);
+}
+
+.cap-card__name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--cap-ink);
+  line-height: 1.2;
+}
+
+.cap-card__detail {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--cap-muted);
+  margin: 0;
+}
+
+/* ---- Status pill ---- */
+.cap-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cap-pill__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.cap-pill--active {
+  color: #047857;
+  background: #ecfdf5;
+}
+
+.cap-pill--inactive {
+  color: #64748b;
+  background: #f1f5f9;
+}
+
+.cap-pill--indeterminate {
+  color: #b45309;
+  background: #fffbeb;
+}
+
+/* ---- Memory toggle area inside a card ---- */
+.cap-card__memory {
+  border-top: 1px dashed #e6e9ef;
+  padding-top: 10px;
+  margin-top: 2px;
+}
+
+.cap-card__note {
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.cap-card__note--warn {
+  color: #b45309;
+}
+
+/* ---- Agent cards ---- */
+.cap-agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.cap-agent {
+  position: relative;
+  border: 1px solid var(--cap-border);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transition: box-shadow 0.18s ease, transform 0.06s ease;
+}
+
+.cap-agent:hover {
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.09);
+  transform: translateY(-1px);
+}
+
+.cap-agent__bar {
+  height: 4px;
+  width: 100%;
+  background: var(--accent, #4f46e5);
+}
+
+.cap-agent__btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 15px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.cap-agent__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent, #4f46e5);
+  flex-shrink: 0;
+}
+
+.cap-agent__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.cap-agent__name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--cap-ink);
+  line-height: 1.2;
+}
+
+.cap-agent__model {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent, #4f46e5);
+  background: color-mix(in srgb, var(--accent, #4f46e5) 12%, #fff);
+  border: 1px solid color-mix(in srgb, var(--accent, #4f46e5) 24%, #fff);
+}
+
+.cap-agent__chev {
+  color: var(--cap-muted);
+  font-size: 12px;
+  transition: transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.cap-agent__chev.is-open {
+  transform: rotate(90deg);
+}
+
+.cap-agent__body {
+  padding: 2px 15px 16px;
+  border-top: 1px solid #f1f3f7;
+}
+
+.cap-kv {
+  display: flex;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  padding: 5px 0;
+}
+
+.cap-kv__k {
+  color: var(--cap-muted);
+  font-weight: 600;
+  min-width: 108px;
+  flex-shrink: 0;
+}
+
+.cap-kv__v {
+  color: #334155;
+  word-break: break-word;
+}
+
+.cap-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #3730a3;
+  background: #eef2ff;
+}
+
+.cap-chip--muted {
+  color: #64748b;
+  background: #f1f5f9;
+}
+
+.cap-prompt {
+  white-space: pre-wrap;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 10px 12px;
+  margin-top: 8px;
+  background: #0f172a;
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #e2e8f0;
+}

@@ -1,0 +1,79 @@
+/* Modern, clean top navigation tabs (pill-in-track style). */
+.modern-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.modern-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 9px 16px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.05s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.modern-tab:hover:not(.is-active):not(:disabled) {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.modern-tab:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.modern-tab.is-active {
+  color: #4f46e5;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(79, 70, 229, 0.14);
+}
+
+.modern-tab:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.modern-tab .modern-tab__icon {
+  display: inline-flex;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.modern-tab:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Small / nested variant — lighter track and tighter pills. */
+.modern-tabs--sm {
+  gap: 3px;
+  padding: 4px;
+  border-radius: 10px;
+  background: #f6f8fb;
+}
+
+.modern-tabs--sm .modern-tab {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 7px;
+}
+
+.modern-tabs--sm .modern-tab__icon {
+  font-size: 13px;
+}

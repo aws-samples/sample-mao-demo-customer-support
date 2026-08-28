@@ -1,0 +1,46 @@
+/* Modern Data explorer surface. */
+.data-panel {
+  background: #ffffff;
+  border: 1px solid #e6e9ef;
+  border-radius: 16px;
+  padding: 20px 22px 24px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}
+
+.data-panel__head {
+  margin-bottom: 16px;
+}
+
+.data-panel__title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+}
+
+.data-panel__sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Category tab bar spacing */
+.data-panel__cats {
+  margin-bottom: 16px;
+}
+
+/* Sub-navigation (Orders / Inventory, etc.) */
+.data-sub {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* Card that frames each data table */
+.data-table-card {
+  border: 1px solid #eceef2;
+  border-radius: 12px;
+  padding: 6px 12px 12px;
+  background: #fbfcfe;
+}
